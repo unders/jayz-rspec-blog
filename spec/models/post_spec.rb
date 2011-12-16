@@ -1,7 +1,8 @@
 require 'spec_helper'
 
 describe Post do
-  let(:post) { Post.make.save }
+  let!(:post) { Post.make.save }
+  let!(:other_post) { Post.make.new }
 
   specify { post.should be_valid }
 

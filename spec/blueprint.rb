@@ -23,7 +23,7 @@ module JayZ
 
   class Post < Blueprint(ActiveRecord)
     default do
-      title { "My blog title" }
+      title { "My blog title #{sn}" }
       body { "This is my body" }
     end
   end
