@@ -18,6 +18,10 @@ end
 
 gem 'jquery-rails'
 
+group :development, :test do
+  gem 'jay_z', :require => 'jay_z/rails'
+  gem 'rspec-rails', "~> 2.7"
+end
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
