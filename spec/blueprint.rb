@@ -20,4 +20,12 @@ module JayZ
   #        body  { "Lorem ipsum...#" }
   #      end
   #    end
+
+  class Post < Blueprint(ActiveRecord)
+    default do
+      title { "My blog title" }
+      body { "This is my body" }
+    end
+  end
+
 end
