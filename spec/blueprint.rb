@@ -26,6 +26,23 @@ module JayZ
       title { "My blog title #{sn}" }
       body { "This is my body" }
     end
+
+    define(:with_2_comments) do
+      comments { [ Comment.make(:nil_post).new, Comment.make(:nil_post).new ] }
+    end
+  end
+
+
+  class Comment < Blueprint(ActiveRecord)
+    default do
+      commenter { "anders@elabs.se" }
+      body { "This is an important comment." }
+      post { Post.make.new }
+    end
+
+    define(:nil_post) do
+      post { nil }
+    end
   end
 
 end
