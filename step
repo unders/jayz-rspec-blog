@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+
+ARGV.each do|step|
+  if "master" == step
+    system "git checkout #{step}"
+  elsif 9 == step.to_i
+    puts "\nYou are done!\n\n"
+  else
+    system "git checkout step#{step}"
+
+    unless 1 == step.to_i
+      system "git diff --stat --color step#{step.to_i - 1}..step#{step}"
+    end
+  end
+end
