@@ -28,7 +28,7 @@ module JayZ
     end
 
     define(:with_2_comments) do
-      comments { [ Comment.make(:nil_post).new, Comment.make(:nil_post).new ] }
+      comments { [ Comment.make.new, Comment.make.new ] }
     end
   end
 
@@ -38,10 +38,6 @@ module JayZ
       commenter { "anders@elabs.se" }
       body { "This is an important comment." }
       post { Post.make.new }
-    end
-
-    define(:nil_post) do
-      post { nil }
     end
   end
 

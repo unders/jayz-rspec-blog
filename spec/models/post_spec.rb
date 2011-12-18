@@ -6,6 +6,7 @@ describe Post do
   let(:post_with_comments) { Post.make(:with_2_comments).save.reload }
 
   specify { post.should be_valid }
+  specify { post_with_comments.comments.length.should eq(2) }
 
   describe "#title" do
     it "must be present" do
@@ -19,8 +20,15 @@ describe Post do
   end
 
   describe "#comments" do
-    it "returns all comments" do
-      post_with_comments.comments.length.should == 2
+    before do
+      other_post.save!
+      other_post.comments = [ Comment.make(post: nil, body: 'My body').new! ]
+      post.comments << Comment.make(post: nil, body: 'This comment body').new!
+    end
+
+    it "return all comments" do
+      Post.find(post.id).comments.map(&:body).should eq(['This comment body'])
+      Post.find(other_post.id).comments.map(&:body).should eq(['My body'])
     end
   end
 end
