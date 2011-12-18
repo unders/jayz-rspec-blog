@@ -21,6 +21,35 @@ module JayZ
   #      end
   #    end
 
+  module ActiveRecord
+
+    def newnew
+      @object
+    end
+
+    def save_and_reload
+      save
+      @object = @object.class.find(@object.id)
+      @object
+    end
+
+    #def save
+    # redefine the save method if you want a different behaviour.
+    #end
+  end
+
+  module CustomRecord
+    def my_method
+      @object.my_method + " inside the CustomRecord proxy."
+    end
+  end
+
+  class  MyCustomStuff < Blueprint(CustomRecord)
+    default do
+      my_method { "jihaa" }
+    end
+  end
+
   class Post < Blueprint(ActiveRecord)
     default do
       title { "My blog title #{sn}" }

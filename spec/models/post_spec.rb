@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Post do
   let!(:post) { Post.make.save }
   let!(:other_post) { Post.make.new }
-  let(:post_with_comments) { Post.make(:with_2_comments).save.reload }
+  let(:post_with_comments) { Post.make(:with_2_comments).save_and_reload }
 
   specify { post.should be_valid }
   specify { post_with_comments.comments.length.should eq(2) }
